@@ -4,7 +4,7 @@ title: Beta Changelog
 
 import GithubStar from '@site/src/components/GithubStar';
 
-<GithubStar variant="bar" scene="changelog" />
+<GithubStar variant="bar" scene="beta-changelog" />
 
 ScriptCat's version releases are divided into two main branches: stable releases and pre-release versions. For the stable release changelog, please see: [Changelog](./index.md)
 

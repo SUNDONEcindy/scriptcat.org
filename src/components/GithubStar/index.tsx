@@ -61,7 +61,7 @@ function useStarCount(): number | null {
   return stars;
 }
 
-type Scene = "home" | "install" | "changelog";
+type Scene = "home" | "install" | "changelog" | "beta-changelog";
 
 // 不同场景下细长条的文案
 function barCopy(scene: Scene): { title: ReactNode; subtitle: ReactNode } {
@@ -78,6 +78,7 @@ function barCopy(scene: Scene): { title: ReactNode; subtitle: ReactNode } {
         ),
       };
     case "changelog":
+    case "beta-changelog":
       return {
         title: (
           <Translate id="githubStar.changelog.title">
@@ -114,7 +115,9 @@ export default function GithubStar({
   className,
 }: GithubStarProps): JSX.Element {
   const stars = useStarCount();
-  const logoUrl = useBaseUrl("/img/logo.png");
+  const logoUrl = useBaseUrl(
+    scene === "beta-changelog" ? "/img/logo-beta.png" : "/img/logo.png"
+  );
 
   const starButton = (extraClass?: string) => (
     <Link
@@ -138,7 +141,7 @@ export default function GithubStar({
 
   const { title, subtitle } = barCopy(scene);
   return (
-    <div className={clsx(styles.bar, className)}>
+    <div className={clsx(styles.bar, scene === "beta-changelog" && styles.barChangelog, className)}>
       <div className={styles.barLogo}>
         <img src={logoUrl} alt="ScriptCat" />
       </div>
